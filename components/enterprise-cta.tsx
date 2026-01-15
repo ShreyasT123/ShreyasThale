@@ -5,8 +5,9 @@ import Link from "next/link"
 import { useRef } from "react"
 
 // 1. Define the props interface
+// 1. Define the props interface
 interface EnterpriseCTAProps {
-    scrollContainerRef: React.RefObject<HTMLDivElement>
+    scrollContainerRef: React.RefObject<HTMLDivElement | null>
 }
 
 // 2. Accept the prop
@@ -59,24 +60,26 @@ export function EnterpriseCTA({ scrollContainerRef }: EnterpriseCTAProps) {
                     >
                         <div className="flex-1 space-y-6">
                             <h2 className="text-4xl md:text-6xl font-sans font-medium tracking-tighter leading-[1.1] text-white">
-                                What hasn't been <br /> can now be — <br />
-                                <span className="text-white/40">with Helius</span>
+                                Let’s Build <br /> Something Serious.
                             </h2>
+                            <p className="text-lg text-white/60 max-w-md">
+                                Open to research, engineering roles, and ambitious collaborations.
+                            </p>
                         </div>
 
                         <div className="flex-1 max-w-lg space-y-10 flex flex-col items-end md:items-start">
                             <div className="flex flex-col sm:flex-row gap-4 w-full justify-end md:justify-start">
                                 <Link
-                                    href="#"
+                                    href="mailto:contact@example.com"
                                     className="bg-white text-black hover:bg-white/90 px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm text-center"
                                 >
-                                    Try Helius
+                                    Contact Me
                                 </Link>
                                 <Link
                                     href="#"
                                     className="bg-white/10 border border-white/20 hover:bg-white/20 text-white px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm text-center"
                                 >
-                                    Talk to Sales
+                                    Resume
                                 </Link>
                             </div>
                         </div>

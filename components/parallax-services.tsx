@@ -1,60 +1,57 @@
 "use client"
 
-import { Github, Globe, Terminal, Play } from "lucide-react"
+import { Github, Globe, Terminal, Play, Cpu, Layers, Server, Code } from "lucide-react"
 import Link from "next/link"
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion"
 import { useRef } from "react"
 import { useMotionPreference } from "@/lib/use-motion-preference"
 
-// Define Props Interface
 interface ParallaxServicesProps {
-  scrollContainerRef: React.RefObject<HTMLDivElement>
+  scrollContainerRef: React.RefObject<HTMLDivElement | null>
 }
 
 const services = [
   {
-    title: "Open Weights",
-    tags: ["FULL MODEL ACCESS", "DEPLOY ANYWHERE", "CUSTOMIZABLE"],
-    description: "Run Helius models on your own infrastructure. Full control over deployment, fine-tuning, and customization.",
-    icon: <Github className="w-6 h-6" />,
-    link: "#",
-    image: "/cinematic-ai-landscape.png",
-  },
-  {
-    title: "API",
-    tags: ["PREMIUM QUALITY", "EASE OF USE", "BUILT FOR SCALE"],
-    description: "Simple-to-integrate API to access the latest and most powerful Helius models. Built to handle production workloads at any scale.",
-    icon: <Terminal className="w-6 h-6" />,
-    link: "#",
+    title: "AI & ML Research",
+    tags: ["PYTORCH", "PINNS", "PROBABILISTIC MODELING"],
+    description: "Deep Learning research focusing on Physics-Informed Neural Networks and statistical signal processing. Validated models for fault detection and predictive maintenance.",
+    icon: <Cpu className="w-6 h-6" />,
+    link: "/writing",
     image: "/futuristic-black-machine-learning-architecture.png",
   },
   {
-    title: "Playground",
-    tags: ["TRY INSTANTLY", "NO CODE REQUIRED", "EXPERIMENT"],
-    description: "Test ideas and iterate on prompts in our browser environment. Zero setup required to start exploring visual intelligence.",
-    icon: <Play className="w-6 h-6" />,
-    link: "#",
-    image: "/abstract-neural-network-flow.png",
+    title: "ML Systems & Agentic AI",
+    tags: ["LLM ORCHESTRATION", "MULTI-AGENT SYSTEMS", "COMPILER ML"],
+    description: "Building autonomous agentic systems and optimizing model inference. Experience with compiler-aware benchmarking (XLA, Triton, TensorRT) and distributed training.",
+    icon: <Layers className="w-6 h-6" />,
+    link: "/projects",
+    image: "/cinematic-ai-landscape.png",
   },
   {
-    title: "Enterprise",
-    tags: ["DEDICATED SUPPORT", "CUSTOM MODELS", "SLA GUARANTEES"],
-    description: "Tailored solutions for scaling AI operations. Includes custom fine-tuning and priority access to research.",
-    icon: <Globe className="w-6 h-6" />,
-    link: "#",
+    title: "Systems & Backend",
+    tags: ["FASTAPI", "DISTRIBUTED SYSTEMS", "SCALABILITY"],
+    description: "Designing scalable backend architectures for ML systems. Expertise in async services, API design, and high-performance data processing pipelines.",
+    icon: <Server className="w-6 h-6" />,
+    link: "https://github.com/ShreyasT123",
     image: "/digital-monolith-architecture.png",
+  },
+  {
+    title: "Full-Stack & DevOps",
+    tags: ["REACT/NEXT.JS", "DOCKER", "RUST"],
+    description: "End-to-end application development with a focus on system-level performance. Building product-focused UIs for technical tools and research demos.",
+    icon: <Code className="w-6 h-6" />,
+    link: "https://github.com/ShreyasT123",
+    image: "/abstract-neural-network-flow.png",
   },
 ]
 
-// 1. Accept the prop here
 export function ParallaxServices({ scrollContainerRef }: ParallaxServicesProps) {
   const targetRef = useRef<HTMLDivElement>(null)
   const prefersReducedMotion = useMotionPreference()
 
-  // 2. Tell Framer Motion to watch the specific container, not the window
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    container: scrollContainerRef, // <--- CRITICAL FIX
+    container: scrollContainerRef,
     offset: ["start start", "end end"],
   })
 
@@ -68,7 +65,7 @@ export function ParallaxServices({ scrollContainerRef }: ParallaxServicesProps) 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{
-              root: scrollContainerRef, // Make viewport detection work with container
+              root: scrollContainerRef,
               once: true
             }}
             transition={{
@@ -78,16 +75,16 @@ export function ParallaxServices({ scrollContainerRef }: ParallaxServicesProps) 
           >
             <div>
               <h2 className="text-5xl md:text-8xl font-sans leading-[0.9] tracking-tight text-white block">
-                Built to fit.
+                Capabilities.
               </h2>
               <h2 className="text-5xl md:text-8xl font-sans leading-[0.9] tracking-tight text-muted-foreground block">
-                Ready to run.
+                End-to-end.
               </h2>
             </div>
             <div className="space-y-6 max-w-md">
               <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                Whether you're scaling through API, running open weights on your own infrastructure, or just
-                experimenting – our models work wherever you do.
+                From research and simulation to distributed systems and production deployment.
+                Building the infrastructure that powers intelligent systems.
               </p>
             </div>
           </motion.div>
@@ -119,7 +116,6 @@ export function ParallaxServices({ scrollContainerRef }: ParallaxServicesProps) 
   )
 }
 
-// ... Card component remains exactly the same as your code ...
 function Card({
   i,
   progress,
@@ -209,7 +205,7 @@ function Card({
                   href={service.link}
                   className="inline-flex items-center gap-2 text-[10px] md:text-[11px] font-bold uppercase tracking-widest bg-white text-black hover:bg-white/90 px-6 md:px-8 py-2 md:py-3 rounded-xl transition-all shadow-sm"
                 >
-                  Contact Sales
+                  Explore
                 </Link>
               </div>
             </div>

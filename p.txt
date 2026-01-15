@@ -1,0 +1,185 @@
+Portfolio Content Spec (Source: LinkedIn + GitHub)
+Identity
+
+Name: Shreyas Thale
+Role: AI / ML Research Engineer & Systems Engineer
+Affiliation: B.Tech CSE @ FCRIT (2027)
+Location: Mumbai, India
+
+One-line positioning:
+Independent engineer building research-driven AI systems, distributed ML infrastructure, and production-grade software.
+
+Hero Section
+
+Primary Title:
+Designing autonomous machine learning systems
+
+Subtitle:
+Research-driven AI, distributed systems, and full-stack engineering
+Bridging theory, infrastructure, and real-world deployment.
+
+Credibility Line:
+ML Intern @ IIT Bombay · Software Engineer Intern @ InfinityPool
+Published Researcher · Technical Head @ AIDL
+
+About (Condensed, Portfolio-Grade)
+
+I am an undergraduate engineer and researcher working at the intersection of artificial intelligence, distributed systems, and scalable software engineering.
+
+My experience spans academic research and real-world engineering, including work on Physics-Informed Neural Networks and statistical signal-processing pipelines for predictive maintenance at IIT Bombay. I focus on building efficient, reliable, and accessible AI systems, with interests in model optimization, agentic AI, and ML systems engineering.
+
+I aim to contribute to making AI systems faster, cheaper, and more deployable through better architectures, infrastructure, and system-level design.
+
+Capabilities (formerly Services)
+AI & ML Research
+
+Deep Learning (PyTorch, TensorFlow, JAX)
+
+Probabilistic & Statistical Modeling
+
+Physics-Informed Neural Networks (PINNs)
+
+Signal Processing for Fault Detection
+
+Transformers, Diffusers, Representation Learning
+
+ML Systems & Agentic AI
+
+Agentic AI & Multi-Agent Systems
+
+LLM Orchestration (LangChain)
+
+Compiler-aware ML (XLA, Triton, TensorRT)
+
+Model Optimization & Acceleration
+
+Distributed Training (Ray)
+
+Systems & Backend Engineering
+
+FastAPI, Django, Flask
+
+Scalable backend architectures
+
+API design for ML systems
+
+Async & high-performance services
+
+Full-Stack Engineering
+
+Next.js, React
+
+Tailwind CSS, ShadCN
+
+Web-based visualization systems
+
+Product-focused UI for technical tools
+
+DevOps & Low-Level Systems
+
+Docker
+
+Distributed & scalable system design
+
+Rust (learning, performance-oriented systems)
+
+Projects (formerly Models)
+Superpos — Quantum Simulation Platform
+
+Interactive web-based quantum simulator
+
+Real-time 2D and 3D circuit visualization
+
+Python backend, Flask/FastAPI services
+
+Published at ICCES 2024
+
+Focus on accessibility and education in quantum computing
+
+MARS — Multi-Agent Review System
+
+Agentic AI system for academic paper pre-review
+
+Specialized agents for novelty, methodology, and plagiarism
+
+LLM ensemble (Claude, Mistral, Gemini)
+
+Human-in-the-loop, explainable scoring
+
+Finalist at AWS Impact X Challenge (IIT Bombay)
+
+ML Systems Experiments
+
+Compiler-aware Transformer benchmarking
+
+PyTorch vs JAX vs TensorFlow performance analysis
+
+torch.compile, XLA, TensorRT evaluations
+
+Focus on deployment economics and infra efficiency
+
+Experience
+Machine Learning Intern — IIT Bombay (WaVE Lab)
+
+Developed statistical ML pipelines for bearing fault detection
+
+Applied vibration signal processing (EMD/MEMD)
+
+Improved early-fault detection accuracy and robustness
+
+Validated models across varying RPM and load conditions
+
+Software Engineer Intern — InfinityPool Finnotech
+
+Backend and ML systems development
+
+Worked with FastAPI, distributed ML tooling
+
+Production-focused engineering exposure
+
+Technical Head — AIDL Club, FCRIT
+
+Led AI/ML initiatives and workshops
+
+Mentored students in deep learning and systems
+
+Organized hackathons and technical events
+
+Publications
+
+SuperPOS: An Interactive Web-Based Quantum Simulator with Real-Time 2D and 3D Visualizations
+ICCES 2024
+Focus: Quantum education, interactive simulation, system architecture
+
+Learning Focus (Current)
+
+Mobile development: React Native, Flutter, Jetpack Compose
+
+Systems programming: Rust
+
+Distributed ML infrastructure
+
+Advanced agentic AI architectures
+
+Contact
+
+Email: shreyasthale54@gmail.com
+
+GitHub: (primary code + experiments)
+LinkedIn: (research + systems content)
+
+Portfolio Tone Constraints (Important for Agent)
+
+Avoid “student”, “passionate”, or motivational language
+
+Prefer system-level, research-driven phrasing
+
+Emphasize architecture, scale, and impact
+
+Keep copy concise and confident
+
+No emojis, no buzzword stuffing
+
+
+
+also use videos like public\teaching0.mp4,public\teaching1.mp4 public\teaching0.mp4

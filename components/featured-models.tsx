@@ -9,50 +9,35 @@ import { MediaControls } from "./media-controls"
 const modelsData = [
     {
         id: "01",
-        name: "HELIUS.2 [MAX]",
-        tagline: "Highest editing consistency across tasks.",
-        description: "Vast amounts of world knowledge.",
-        details: "Strongest prompt following and faithful representation of various styles.",
+        name: "SUPERPOS",
+        tagline: "Interactive Web-Based Quantum Simulator.",
+        description: "A comprehensive platform for quantum education, simulation, and real-time visualization.",
+        details: "Features real-time 2D/3D circuit visualization, modular gate construction, and state vector simulation. Built with React and Python (Flask). Published at ICCES 2024.",
         variants: [
-            { type: "flash", video: "/arc_reactor.mp4", thumbnail: "/announcement-main.png" },
-            { type: "exp", video: "/energy-flow.mp4", thumbnail: "/cinematic-ai-landscape.png" },
-            { type: "pro", video: "/planet_sys.mp4", thumbnail: "/planet_sys.png" },
+            { type: "demo", video: "/teaching0.mp4", thumbnail: "/dev.png" },
+            { type: "paper", video: "/abstract-neural-network-flow.png", thumbnail: "/abstract-neural-network-flow.png" },
         ]
     },
     {
         id: "02",
-        name: "HELIUS.2",
-        tagline: "Optimized for high-speed inference.",
-        description: "State-of-the-art vision architecture.",
-        details: "Balanced performance for real-time applications and complex reasoning.",
+        name: "MARS",
+        tagline: "Multi-Agent Review System.",
+        description: "Agentic AI system for academic paper pre-review and scoring.",
+        details: "Orchestrates specialized agents for novelty, methodology, and plagiarism checks using an ensemble of LLMs (Claude, Mistral). Finalist at AWS Impact X Challenge.",
         variants: [
-            { type: "flash", video: "/npu-chip.mp4", thumbnail: "/announcement-secondary.png" },
-            { type: "exp", video: "/energy-flow1.mp4", thumbnail: "/abstract-neural-network-flow.png" },
-            { type: "pro", video: "/artist_ai.mp4", thumbnail: "/artist_ai.png" },
+            { type: "system", video: "/teachingaicode.mp4", thumbnail: "/planet_sys.png" },
+            { type: "arch", video: "/digital-monolith-architecture.png", thumbnail: "/digital-monolith-architecture.png" },
         ]
     },
     {
         id: "03",
-        name: "HELIUS.1 [PRO]",
-        tagline: "Professional-grade visual generation.",
-        description: "Ultra-high resolution output.",
-        details: "Advanced latent space manipulation for precise artistic control.",
+        name: "ML SYSTEMS",
+        tagline: "Compiler-Aware Transformer Benchmarking.",
+        description: "Deep dive into deployment economics and infra efficiency.",
+        details: "Comparative analysis of PyTorch, JAX, and TensorFlow performance. Investigations into torch.compile, XLA, and TensorRT for optimizing Transformer inference.",
         variants: [
-            { type: "flash", video: "/artist_ai.mp4", thumbnail: "/announcement-tertiary.png" },
-            { type: "exp", video: "/digital-monolith-architecture.png", thumbnail: "/digital-monolith-architecture.png" },
-            { type: "pro", video: "/dark-forest.png", thumbnail: "/dark-forest.png" },
-        ]
-    },
-    {
-        id: "04",
-        name: "HELIUS.1 [FLEX]",
-        tagline: "Lightweight and versatile.",
-        description: "Deployable on edge devices.",
-        details: "Highly efficient distillation of our frontier cognitive models.",
-        variants: [
-            { type: "flash", video: "/planet_sys.mp4", thumbnail: "/abstract-neural-network-flow.png" },
-            { type: "exp", video: "/futuristic-black-machine-learning-architecture.png", thumbnail: "/futuristic-black-machine-learning-architecture.png" },
-            { type: "pro", video: "/dev.png", thumbnail: "/dev.png" },
+            { type: "benchmark", video: "/npu-chip.mp4", thumbnail: "/npu-chip.mp4" },
+            { type: "code", video: "/artist_ai.png", thumbnail: "/artist_ai.png" },
         ]
     },
 ]
@@ -68,18 +53,15 @@ export function FeaturedModels() {
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                    <h2 className="text-4xl md:text-6xl font-sans tracking-tight">Featured models</h2>
+                    <h2 className="text-4xl md:text-6xl font-sans tracking-tight">Selected Works</h2>
                     <div className="flex items-center gap-8 text-[11px] font-medium tracking-widest uppercase text-muted-foreground">
-                        <Link href="#" className="flex items-center gap-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1">
-                            Compare HELIUS Models <ArrowUpRight className="w-3 h-3" />
-                        </Link>
-                        <Link href="#" className="flex items-center gap-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1">
-                            Explore All Models <ArrowUpRight className="w-3 h-3" />
+                        <Link href="/projects" className="flex items-center gap-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1">
+                            View All Projects <ArrowUpRight className="w-3 h-3" />
                         </Link>
                     </div>
                 </div>
 
-                {/* Tab Menu - 4 Options */}
+                {/* Tab Menu */}
                 <div className="relative flex items-center gap-12 mb-12 border-b border-white/5 pb-4 overflow-x-auto overflow-y-hidden custom-scrollbar">
 
                     {modelsData.map((model) => (
@@ -144,7 +126,7 @@ export function FeaturedModels() {
 
                     {/* Bottom row: Variants left, Card right (overlapping) */}
                     <div className="flex flex-col lg:flex-row gap-8 mt-8 items-end">
-                        {/* 2 Variants of Selected Model */}
+                        {/* Variants of Selected Model */}
                         <div className="flex gap-4 p-2">
                             {activeModel.variants.map((variant, idx) => (
                                 <div key={variant.type} className="flex flex-col gap-2">
@@ -153,7 +135,12 @@ export function FeaturedModels() {
                                         className={`relative w-28 md:w-36 aspect-video rounded-xl overflow-hidden transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background ${activeVariantIndex === idx ? "ring-2 ring-white/60 scale-[0.98]" : "opacity-40 hover:opacity-100 focus:opacity-100"
                                             }`}
                                     >
-                                        <img src={variant.thumbnail} alt={`${activeModel.name} ${variant.type} variant preview showing ${activeModel.tagline.toLowerCase()}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                        {/* Fallback to video as thumbnail if needed, or use a static image */}
+                                        {variant.thumbnail.endsWith('.mp4') ? (
+                                            <video src={variant.thumbnail} className="w-full h-full object-cover" muted />
+                                        ) : (
+                                            <img src={variant.thumbnail} alt={`${activeModel.name} ${variant.type}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                        )}
                                         <div className="absolute inset-0 bg-black/20" />
                                     </button>
                                     <span className={`text-[10px] font-bold tracking-widest uppercase text-center ${activeVariantIndex === idx ? "text-white" : "text-white/40"}`}>
@@ -164,7 +151,7 @@ export function FeaturedModels() {
                         </div>
 
                         {/* Overlapping Info Card */}
-                        <div className="lg:flex-1 lg:-mt-64 z-10">
+                        <div className="lg:flex-1 lg:-mt-64 z-10 transition-all">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={`${activeModel.id}-${activeVariant.type}`}
@@ -176,11 +163,11 @@ export function FeaturedModels() {
                                 >
                                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
                                         <h3 className="text-4xl md:text-5xl font-sans font-medium tracking-tighter leading-none text-white">
-                                            {activeModel.name} <span className="text-2xl opacity-40 ml-2">[{activeVariant.type}]</span>
+                                            {activeModel.name}
                                         </h3>
-                                        <button className="bg-white text-black hover:bg-white/90 px-10 py-3.5 rounded-xl text-sm font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:scale-[1.02]">
-                                            Learn More
-                                        </button>
+                                        <Link href={`/projects#${activeModel.id}`} className="bg-white text-black hover:bg-white/90 px-10 py-3.5 rounded-xl text-sm font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:scale-[1.02]">
+                                            View Project
+                                        </Link>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 text-sm leading-relaxed border-b border-white/10 pb-10 mb-10">

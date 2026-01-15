@@ -17,7 +17,7 @@ export function Announcements() {
             <div className="absolute inset-0 z-0">
               <Image
                 src="/dev.png"
-                alt="HELIUS.2 frontier visual intelligence model announcement featuring advanced AI architecture"
+                alt="Superpos platform demonstrating quantum simulation capabilities"
                 fill
                 className="object-cover transition-all duration-700 group-hover:scale-105"
               />
@@ -29,12 +29,12 @@ export function Announcements() {
 
             {/* Text Content */}
             <div className="relative z-20 space-y-4">
-              <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">November 11, 2025</div>
+              <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">Research Paper Published</div>
               <h3 className="text-4xl md:text-6xl font-sans font-medium leading-[0.9] tracking-tighter text-white">
-                HELIUS.2: Frontier Visual Intelligence
+                Superpos: Web-based Quantum Simulation
               </h3>
               <p className="text-sm md:text-lg text-white/60 font-medium max-w-xl">
-                Today, we release HELIUS.2, our most capable model to date.
+                A comprehensive platform for quantum circuit simulation and education, built with Django and React.
               </p>
             </div>
           </Link>
@@ -50,7 +50,7 @@ export function Announcements() {
                 <Image
                   src="/planet_sys.png"
 
-                  alt="Helius $300M Series B funding announcement showcasing company growth and investment milestone"
+                  alt="Fintech internship project showcasing options strategy engine"
                   fill
                   className="object-cover transition-all duration-700 group-hover:scale-105"
                 />
@@ -61,16 +61,16 @@ export function Announcements() {
 
               {/* Background Large Text */}
               <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none opacity-10 transition-opacity duration-500 group-hover:opacity-5">
-                <span className="text-4xl font-bold tracking-tighter text-gray-300 whitespace-nowrap">Our $300M Series B</span>
+                <span className="text-4xl font-bold tracking-tighter text-gray-300 whitespace-nowrap">Infinitypool</span>
               </div>
 
               {/* Masking Overlay (Active by default unless hovered) */}
               <div className="absolute inset-0 z-20 bg-[#D1EEF5]/80 opacity-100 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none" />
 
               <div className="relative z-30 space-y-2">
-                <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500">December 1, 2025</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500">Fintech Internship</div>
                 <h3 className="text-xl md:text-2xl font-sans font-medium leading-tight text-gray-900 tracking-tight text-balance">
-                  Laying the Foundations for Visual Intelligence—Our $300M Series B
+                  Infinitypool — Options Strategy Engine
                 </h3>
               </div>
             </Link>
@@ -84,7 +84,7 @@ export function Announcements() {
                 <Image
                   src="/cinematic-ai-landscape.png"
 
-                  alt="HELIUS.2 technical report cover showing detailed analysis and enhancement of latent space architecture"
+                  alt="Abstract visualization of reasoning architectures"
                   fill
                   className="object-cover transition-all duration-700 group-hover:scale-105"
                 />
@@ -95,16 +95,16 @@ export function Announcements() {
 
               {/* Background Large Text */}
               <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none opacity-10 transition-opacity duration-500 group-hover:opacity-5">
-                <span className="text-4xl font-bold tracking-tighter text-gray-300 whitespace-nowrap">HELIUS.2</span>
+                <span className="text-4xl font-bold tracking-tighter text-gray-300 whitespace-nowrap">Research</span>
               </div>
 
               {/* Masking Overlay (Active by default unless hovered) */}
               <div className="absolute inset-0 z-20 bg-[#D1EEF5]/80 opacity-100 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none" />
 
               <div className="relative z-30 space-y-2">
-                <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500">November 25, 2025</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-500">Current Focus</div>
                 <h3 className="text-xl md:text-2xl font-sans font-medium leading-tight text-gray-900 tracking-tight text-balance">
-                  Technical Report - HELIUS.2: Analyzing and Enhancing the Latent Space of HELIUS
+                  Next-Gen Reasoning Architectures & Systems
                 </h3>
               </div>
             </Link>
