@@ -67,7 +67,7 @@ export default function ProjectsPage() {
             <div className="absolute inset-0 grid-background pointer-events-none opacity-50" />
 
             <nav className="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-6 border-b border-white/5 bg-background/80 backdrop-blur-md">
-                <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:text-white/70 transition-colors">
+                <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:text-[#fefefe]/70 transition-colors">
                     <ArrowLeft className="w-4 h-4" /> Back to Home
                 </Link>
                 <div className="text-xl font-bold tracking-tighter uppercase italic">SHREYAS</div>
@@ -100,7 +100,7 @@ export default function ProjectsPage() {
                                 <div className="space-y-4">
                                     <div className="flex flex-wrap gap-2">
                                         {project.stack.map(tech => (
-                                            <span key={tech} className="text-[10px] font-mono tracking-widest uppercase border border-white/10 px-2 py-1 rounded-sm text-white/50">
+                                            <span key={tech} className="text-[10px] font-mono tracking-widest uppercase border border-white/10 px-2 py-1 rounded-sm text-[#fefefe]/50">
                                                 {tech}
                                             </span>
                                         ))}
@@ -111,7 +111,7 @@ export default function ProjectsPage() {
 
                                 <ul className="space-y-3 border-l-2 border-white/10 pl-6">
                                     {project.highlights.map(highlight => (
-                                        <li key={highlight} className="text-sm md:text-base text-white/80 font-light">
+                                        <li key={highlight} className="text-sm md:text-base text-[#fefefe]/80 font-light">
                                             {highlight}
                                         </li>
                                     ))}
@@ -122,7 +122,7 @@ export default function ProjectsPage() {
                                         <Link
                                             key={link.label}
                                             href={link.href}
-                                            className="inline-flex items-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+                                            className="inline-flex items-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 text-[#fefefe] px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
                                         >
                                             {link.icon} {link.label}
                                         </Link>

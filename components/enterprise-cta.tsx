@@ -56,13 +56,13 @@ export function EnterpriseCTA({ scrollContainerRef }: EnterpriseCTAProps) {
                             once: true
                         }}
                         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-                        className="absolute bottom-6 right-6 left-6 lg:left-auto lg:bottom-0 lg:right-0 lg:w-[85%] bg-zinc-900/90 backdrop-blur-md rounded-[2rem] p-8 md:p-14 text-white shadow-2xl flex flex-col md:flex-row justify-between items-end md:items-center gap-8 lg:translate-y-4"
+                        className="absolute bottom-6 right-6 left-6 lg:left-auto lg:bottom-0 lg:right-0 lg:w-[85%] bg-zinc-900/90 backdrop-blur-md rounded-[2rem] p-8 md:p-14 text-[#fefefe] shadow-2xl flex flex-col md:flex-row justify-between items-end md:items-center gap-8 lg:translate-y-4"
                     >
                         <div className="flex-1 space-y-6">
-                            <h2 className="text-4xl md:text-6xl font-sans font-medium tracking-tighter leading-[1.1] text-white">
+                            <h2 className="text-4xl md:text-6xl font-sans font-medium tracking-tighter leading-[1.1] text-[#fefefe]">
                                 Let’s Build <br /> Something Serious.
                             </h2>
-                            <p className="text-lg text-white/60 max-w-md">
+                            <p className="text-lg text-[#fefefe]/60 max-w-md">
                                 Open to research, engineering roles, and ambitious collaborations.
                             </p>
                         </div>
@@ -77,7 +77,7 @@ export function EnterpriseCTA({ scrollContainerRef }: EnterpriseCTAProps) {
                                 </Link>
                                 <Link
                                     href="#"
-                                    className="bg-white/10 border border-white/20 hover:bg-white/20 text-white px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm text-center"
+                                    className="bg-white/10 border border-white/20 hover:bg-white/20 text-[#fefefe] px-10 py-4 rounded-xl text-sm font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm text-center"
                                 >
                                     Resume
                                 </Link>

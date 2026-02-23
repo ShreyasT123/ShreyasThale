@@ -12,7 +12,7 @@ export default function ResumePage() {
             <div className="absolute inset-0 grid-background pointer-events-none opacity-50" />
 
             <nav className="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-6 border-b border-white/5 bg-background/80 backdrop-blur-md">
-                <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:text-white/70 transition-colors">
+                <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:text-[#fefefe]/70 transition-colors">
                     <ArrowLeft className="w-4 h-4" /> Back to Home
                 </Link>
                 <div className="text-xl font-bold tracking-tighter uppercase italic">SHREYAS</div>
@@ -60,8 +60,8 @@ export default function ResumePage() {
                             </div>
                             <div className="md:col-span-3 space-y-4">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                                    <h3 className="text-2xl font-medium text-white group-hover:text-emerald-400 transition-colors">Machine Learning Intern</h3>
-                                    <span className="text-white/60">IIT Bombay (WaVE Lab)</span>
+                                    <h3 className="text-2xl font-medium text-[#fefefe] group-hover:text-emerald-400 transition-colors">Machine Learning Intern</h3>
+                                    <span className="text-[#fefefe]/60">IIT Bombay (WaVE Lab)</span>
                                 </div>
                                 <p className="text-muted-foreground leading-relaxed">
                                     Developing statistical ML pipelines for bearing fault detection using vibration signal processing (EMD/MEMD). Improved early-fault detection accuracy and validated models across varying RPM and load conditions.
@@ -76,8 +76,8 @@ export default function ResumePage() {
                             </div>
                             <div className="md:col-span-3 space-y-4">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                                    <h3 className="text-2xl font-medium text-white group-hover:text-emerald-400 transition-colors">Software Engineer Intern</h3>
-                                    <span className="text-white/60">InfinityPool Finnotech</span>
+                                    <h3 className="text-2xl font-medium text-[#fefefe] group-hover:text-emerald-400 transition-colors">Software Engineer Intern</h3>
+                                    <span className="text-[#fefefe]/60">InfinityPool Finnotech</span>
                                 </div>
                                 <p className="text-muted-foreground leading-relaxed">
                                     Worked on backend and ML systems development. Built high-frequency options strategy engines using FastAPI and distributed tooling. Gained production-focused engineering exposure.
@@ -92,8 +92,8 @@ export default function ResumePage() {
                             </div>
                             <div className="md:col-span-3 space-y-4">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                                    <h3 className="text-2xl font-medium text-white group-hover:text-emerald-400 transition-colors">Technical Head</h3>
-                                    <span className="text-white/60">AIDL Club, FCRIT</span>
+                                    <h3 className="text-2xl font-medium text-[#fefefe] group-hover:text-emerald-400 transition-colors">Technical Head</h3>
+                                    <span className="text-[#fefefe]/60">AIDL Club, FCRIT</span>
                                 </div>
                                 <p className="text-muted-foreground leading-relaxed">
                                     Led AI/ML initiatives and workshops. Mentored students in deep learning and systems. Organized hackathons and technical events.
@@ -111,8 +111,8 @@ export default function ResumePage() {
                             2027
                         </div>
                         <div className="md:col-span-3 space-y-2">
-                            <h3 className="text-2xl font-medium text-white group-hover:text-emerald-400 transition-colors">B.Tech Computer Science</h3>
-                            <div className="text-white/60">Fr. Conceicao Rodrigues Institute of Technology (FCRIT)</div>
+                            <h3 className="text-2xl font-medium text-[#fefefe] group-hover:text-emerald-400 transition-colors">B.Tech Computer Science</h3>
+                            <div className="text-[#fefefe]/60">Fr. Conceicao Rodrigues Institute of Technology (FCRIT)</div>
                             <p className="text-sm text-muted-foreground pt-2">Mumbai, India</p>
                         </div>
                     </div>
@@ -129,10 +129,10 @@ export default function ResumePage() {
                             { title: "Web", items: ["Next.js", "React", "Tailwind", "Three.js", "Framer Motion"] },
                         ].map((category) => (
                             <div key={category.title} className="space-y-4">
-                                <h3 className="text-sm font-mono uppercase tracking-widest text-white/50">{category.title}</h3>
+                                <h3 className="text-sm font-mono uppercase tracking-widest text-[#fefefe]/50">{category.title}</h3>
                                 <ul className="space-y-2">
                                     {category.items.map(item => (
-                                        <li key={item} className="text-white/90">{item}</li>
+                                        <li key={item} className="text-[#fefefe]/90">{item}</li>
                                     ))}
                                 </ul>
                             </div>

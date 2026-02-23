@@ -29,11 +29,11 @@ export function Announcements() {
 
             {/* Text Content */}
             <div className="relative z-20 space-y-4">
-              <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">Research Paper Published</div>
-              <h3 className="text-4xl md:text-6xl font-sans font-medium leading-[0.9] tracking-tighter text-white">
+              <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#fefefe]/50">Research Paper Published</div>
+              <h3 className="text-4xl md:text-6xl font-sans font-medium leading-[0.9] tracking-tighter text-[#fefefe]">
                 Superpos: Web-based Quantum Simulation
               </h3>
-              <p className="text-sm md:text-lg text-white/60 font-medium max-w-xl">
+              <p className="text-sm md:text-lg text-[#fefefe]/60 font-medium max-w-xl">
                 A comprehensive platform for quantum circuit simulation and education, built with Django and React.
               </p>
             </div>

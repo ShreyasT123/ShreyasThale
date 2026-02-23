@@ -12,7 +12,7 @@ export default function SystemStatusPage() {
             <div className="absolute inset-0 grid-background pointer-events-none opacity-50" />
 
             <nav className="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-6 border-b border-white/5 bg-background/80 backdrop-blur-md">
-                <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:text-white/70 transition-colors">
+                <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:text-[#fefefe]/70 transition-colors">
                     <ArrowLeft className="w-4 h-4" /> Back to Home
                 </Link>
                 <div className="text-xl font-bold tracking-tighter uppercase italic">SHREYAS</div>
@@ -37,13 +37,13 @@ export default function SystemStatusPage() {
                                     <Activity className="w-6 h-6" />
                                 </div>
                                 <div className="space-y-1">
-                                    <h3 className="text-sm font-medium text-white/50 uppercase tracking-widest">Current Status</h3>
+                                    <h3 className="text-sm font-medium text-[#fefefe]/50 uppercase tracking-widest">Current Status</h3>
                                     <p className="text-emerald-500 font-medium">Open for Work</p>
                                 </div>
                             </div>
                             <div className="space-y-4">
                                 <div className="flex justify-between text-sm">
-                                    <span className="text-white/40">Response Time</span>
+                                    <span className="text-[#fefefe]/40">Response Time</span>
                                     <span>&lt; 24 hrs</span>
                                 </div>
                                 <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
@@ -55,14 +55,14 @@ export default function SystemStatusPage() {
                         {/* Metrics Grid */}
                         <div className="grid grid-cols-2 gap-4">
                             <div className="p-6 bg-white/5 border border-white/10 rounded-2xl space-y-2">
-                                <GitCommit className="w-5 h-5 text-white/40" />
+                                <GitCommit className="w-5 h-5 text-[#fefefe]/40" />
                                 <div className="text-2xl font-bold">1,420+</div>
-                                <div className="text-xs text-white/40 uppercase tracking-widest">Yearly Commits</div>
+                                <div className="text-xs text-[#fefefe]/40 uppercase tracking-widest">Yearly Commits</div>
                             </div>
                             <div className="p-6 bg-white/5 border border-white/10 rounded-2xl space-y-2">
-                                <FileText className="w-5 h-5 text-white/40" />
+                                <FileText className="w-5 h-5 text-[#fefefe]/40" />
                                 <div className="text-2xl font-bold">12</div>
-                                <div className="text-xs text-white/40 uppercase tracking-widest">Research Papers</div>
+                                <div className="text-xs text-[#fefefe]/40 uppercase tracking-widest">Research Papers</div>
                             </div>
                         </div>
                     </div>
@@ -81,10 +81,10 @@ export default function SystemStatusPage() {
                                     <div className={`mt-1 w-2 h-2 rounded-full ${item.color} shadow-[0_0_10px_currentColor]`} />
                                     <div className="flex-1 space-y-1 pb-8 border-b border-white/5 last:border-0 last:pb-0">
                                         <div className="flex justify-between items-start">
-                                            <p className="font-medium text-white/90 group-hover:text-white transition-colors">{item.action}</p>
-                                            <span className="text-xs text-white/30 font-mono">{item.time}</span>
+                                            <p className="font-medium text-[#fefefe]/90 group-hover:text-[#fefefe] transition-colors">{item.action}</p>
+                                            <span className="text-xs text-[#fefefe]/30 font-mono">{item.time}</span>
                                         </div>
-                                        <p className="text-sm text-white/40">{item.project}</p>
+                                        <p className="text-sm text-[#fefefe]/40">{item.project}</p>
                                     </div>
                                 </div>
                             ))}

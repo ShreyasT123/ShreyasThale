@@ -12,7 +12,7 @@ export default function WritingPage() {
             <div className="absolute inset-0 grid-background pointer-events-none opacity-50" />
 
             <nav className="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-6 border-b border-white/5 bg-background/80 backdrop-blur-md">
-                <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:text-white/70 transition-colors">
+                <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:text-[#fefefe]/70 transition-colors">
                     <ArrowLeft className="w-4 h-4" /> Back to Home
                 </Link>
                 <div className="text-xl font-bold tracking-tighter uppercase italic">SHREYAS</div>
@@ -45,12 +45,12 @@ export default function WritingPage() {
                                 transition={{ duration: 0.5, delay: i * 0.1 }}
                                 className="h-full p-8 bg-white/5 border border-white/10 rounded-2xl space-y-6 hover:bg-white/[0.07] transition-all cursor-pointer hover:border-white/20"
                             >
-                                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform text-white/80 group-hover:text-white">
+                                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform text-[#fefefe]/80 group-hover:text-[#fefefe]">
                                     <card.icon className="w-6 h-6" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-xl font-medium group-hover:text-white transition-colors">{card.title}</h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-white/70 transition-colors">{card.desc}</p>
+                                    <h3 className="text-xl font-medium group-hover:text-[#fefefe] transition-colors">{card.title}</h3>
+                                    <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-[#fefefe]/70 transition-colors">{card.desc}</p>
                                 </div>
                             </motion.div>
                         </Link>
@@ -86,7 +86,7 @@ export default function WritingPage() {
                                     <p className="text-muted-foreground leading-relaxed max-w-3xl">{paper.abstract}</p>
                                 </div>
                                 <div className="shrink-0 pt-2">
-                                    <button className="text-sm font-medium border border-white/10 rounded-full px-4 py-2 hover:bg-white text-white hover:text-black transition-all">
+                                    <button className="text-sm font-medium border border-white/10 rounded-full px-4 py-2 hover:bg-white text-[#fefefe] hover:text-black transition-all">
                                         Read PDF
                                     </button>
                                 </div>

@@ -55,7 +55,7 @@ export function FeaturedModels() {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
                     <h2 className="text-4xl md:text-6xl font-sans tracking-tight">Selected Works</h2>
                     <div className="flex items-center gap-8 text-[11px] font-medium tracking-widest uppercase text-muted-foreground">
-                        <Link href="/projects" className="flex items-center gap-1 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1">
+                        <Link href="/projects" className="flex items-center gap-1 hover:text-[#fefefe] transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1">
                             View All Projects <ArrowUpRight className="w-3 h-3" />
                         </Link>
                     </div>
@@ -77,8 +77,8 @@ export function FeaturedModels() {
                                 leading-none
                                 focus:outline-none
                                 ${activeModel.id === model.id
-                                    ? "text-white"
-                                    : "text-white/30 hover:text-white/60"}
+                                    ? "text-[#fefefe]"
+                                    : "text-[#fefefe]/30 hover:text-[#fefefe]/60"}
                                 `}
                         >
                             <span className="text-[10px] font-bold tracking-[0.2em]">{model.id}.</span>
@@ -143,7 +143,7 @@ export function FeaturedModels() {
                                         )}
                                         <div className="absolute inset-0 bg-black/20" />
                                     </button>
-                                    <span className={`text-[10px] font-bold tracking-widest uppercase text-center ${activeVariantIndex === idx ? "text-white" : "text-white/40"}`}>
+                                    <span className={`text-[10px] font-bold tracking-widest uppercase text-center ${activeVariantIndex === idx ? "text-[#fefefe]" : "text-[#fefefe]/40"}`}>
                                         {activeModel.name.split(' ')[0]}-{variant.type}
                                     </span>
                                 </div>
@@ -159,10 +159,10 @@ export function FeaturedModels() {
                                     animate={{ y: 0, opacity: 1 }}
                                     exit={{ y: 20, opacity: 0 }}
                                     transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-                                    className="bg-zinc-900/90 backdrop-blur-md rounded-[2.5rem] p-8 md:p-12 text-white shadow-2xl h-full"
+                                    className="bg-zinc-900/90 backdrop-blur-md rounded-[2.5rem] p-8 md:p-12 text-[#fefefe] shadow-2xl h-full"
                                 >
                                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
-                                        <h3 className="text-4xl md:text-5xl font-sans font-medium tracking-tighter leading-none text-white">
+                                        <h3 className="text-4xl md:text-5xl font-sans font-medium tracking-tighter leading-none text-[#fefefe]">
                                             {activeModel.name}
                                         </h3>
                                         <Link href={`/projects#${activeModel.id}`} className="bg-white text-black hover:bg-white/90 px-10 py-3.5 rounded-xl text-sm font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:scale-[1.02]">
@@ -172,19 +172,19 @@ export function FeaturedModels() {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 text-sm leading-relaxed border-b border-white/10 pb-10 mb-10">
                                         <div className="space-y-4">
-                                            <p className="text-lg md:text-xl font-medium text-white/90 tracking-tight leading-tight">
+                                            <p className="text-lg md:text-xl font-medium text-[#fefefe]/90 tracking-tight leading-tight">
                                                 {activeModel.tagline}
                                             </p>
                                         </div>
                                         <div className="space-y-4">
-                                            <p className="text-lg md:text-xl font-medium text-white/90 tracking-tight leading-tight">
+                                            <p className="text-lg md:text-xl font-medium text-[#fefefe]/90 tracking-tight leading-tight">
                                                 {activeModel.description}
                                             </p>
                                         </div>
                                     </div>
 
                                     <div className="max-w-xl">
-                                        <p className="text-white/60 font-medium text-base leading-relaxed">
+                                        <p className="text-[#fefefe]/60 font-medium text-base leading-relaxed">
                                             {activeModel.details}
                                         </p>
                                     </div>
