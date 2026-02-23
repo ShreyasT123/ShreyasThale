@@ -11,12 +11,12 @@ interface MediaControlsProps {
   children: React.ReactNode
 }
 
-export function MediaControls({ 
-  autoPlay = true, 
-  showControls = true, 
+export function MediaControls({
+  autoPlay = true,
+  showControls = true,
   respectMotionPreference = true,
   className = "",
-  children 
+  children
 }: MediaControlsProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -27,11 +27,11 @@ export function MediaControls({
     if (respectMotionPreference && typeof window !== 'undefined') {
       const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
       setPrefersReducedMotion(mediaQuery.matches)
-      
+
       const handleChange = (e: MediaQueryListEvent) => {
         setPrefersReducedMotion(e.matches)
       }
-      
+
       mediaQuery.addEventListener('change', handleChange)
       return () => mediaQuery.removeEventListener('change', handleChange)
     }
@@ -43,7 +43,7 @@ export function MediaControls({
 
     // Set initial playing state based on autoplay and motion preferences
     const shouldAutoplay = autoPlay && (!respectMotionPreference || !prefersReducedMotion)
-    
+
     if (shouldAutoplay) {
       video.play().then(() => {
         setIsPlaying(true)
@@ -97,13 +97,13 @@ export function MediaControls({
   return (
     <div className={`relative group ${className}`}>
       {enhancedChildren}
-      
+
       {showControls && (
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300">
           <button
             onClick={togglePlayPause}
             onKeyDown={handleKeyDown}
-            className="bg-black/50 hover:bg-black/70 text-white rounded-full p-4 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent"
+            className="bg-black/50 hover:bg-black/70 text-[#fefefe] rounded-full p-4 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent"
             aria-label={isPlaying ? "Pause video" : "Play video"}
             tabIndex={0}
           >
@@ -115,10 +115,10 @@ export function MediaControls({
           </button>
         </div>
       )}
-      
+
       {/* Reduced motion indicator */}
       {prefersReducedMotion && respectMotionPreference && (
-        <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+        <div className="absolute top-2 right-2 bg-black/70 text-[#fefefe] text-xs px-2 py-1 rounded">
           Motion Reduced
         </div>
       )}

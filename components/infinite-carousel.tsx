@@ -86,8 +86,8 @@ export function InfiniteCarousel() {
         onMouseLeave={() => setIsPaused(false)}
       >
         <div className={`flex shrink-0 ${prefersReducedMotion
-            ? "" // No animation when motion is reduced
-            : `animate-infinite-scroll ${isPaused ? "pause-animation" : ""}`
+          ? "" // No animation when motion is reduced
+          : `animate-infinite-scroll ${isPaused ? "pause-animation" : ""}`
           }`}>
           {/* First Set */}
           <div className="flex gap-6 px-3">
@@ -103,8 +103,8 @@ export function InfiniteCarousel() {
                   role="button"
                   aria-label={`View technology: ${item.name}`}
                   className={`relative flex-none w-[300px] md:w-[450px] aspect-[4/5] rounded-2xl overflow-hidden group/card cursor-pointer ${prefersReducedMotion
-                      ? "opacity-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background"
-                      : `transition-all duration-500 hover:scale-[1.02] group-hover/carousel:blur-sm hover:!blur-none opacity-100 group-hover/carousel:opacity-40 hover:!opacity-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background focus:scale-[1.02] focus:!blur-none focus:!opacity-100`
+                    ? "opacity-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background"
+                    : `transition-all duration-500 hover:scale-[1.02] group-hover/carousel:blur-sm hover:!blur-none opacity-100 group-hover/carousel:opacity-40 hover:!opacity-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background focus:scale-[1.02] focus:!blur-none focus:!opacity-100`
                     }`}
                   onFocus={() => handleCardFocus(cardId)}
                   onBlur={handleCardBlur}
@@ -112,15 +112,15 @@ export function InfiniteCarousel() {
                 >
                   <Image src={item.image || "/placeholder.svg"} alt={`${item.name} technology card`} fill className="object-cover" />
                   <div className={`absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent ${prefersReducedMotion
-                      ? "translate-y-0" // Always visible when motion is reduced
-                      : `translate-y-full group-hover/card:translate-y-0 transition-transform duration-500 ease-out ${isCardFocused ? 'translate-y-0' : ''}`
+                    ? "translate-y-0" // Always visible when motion is reduced
+                    : `translate-y-full group-hover/card:translate-y-0 transition-transform duration-500 ease-out ${isCardFocused ? 'translate-y-0' : ''}`
                     }`}>
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-white/60 mb-1">{item.category}</div>
-                    <p className="text-2xl text-white font-sans font-medium leading-tight">{item.name}</p>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-[#fefefe]/60 mb-1">{item.category}</div>
+                    <p className="text-2xl text-[#fefefe] font-sans font-medium leading-tight">{item.name}</p>
                   </div>
                   <div className={`absolute top-4 left-4 flex gap-2 ${prefersReducedMotion
-                      ? "opacity-100" // Always visible when motion is reduced
-                      : `opacity-0 group-hover/card:opacity-100 transition-opacity ${isCardFocused ? 'opacity-100' : ''}`
+                    ? "opacity-100" // Always visible when motion is reduced
+                    : `opacity-0 group-hover/card:opacity-100 transition-opacity ${isCardFocused ? 'opacity-100' : ''}`
                     }`}>
                     <div className="w-10 h-10 border border-white/40 bg-black/40 backdrop-blur-sm rounded-md p-1">
                       <div className="w-full h-full bg-white/10 rounded-sm" />
@@ -146,8 +146,8 @@ export function InfiniteCarousel() {
                   role="button"
                   aria-label={`View technology: ${item.name}`}
                   className={`relative flex-none w-[300px] md:w-[450px] aspect-[4/5] rounded-2xl overflow-hidden group/card cursor-pointer ${prefersReducedMotion
-                      ? "opacity-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background"
-                      : `transition-all duration-500 hover:scale-[1.02] group-hover/carousel:blur-sm hover:!blur-none opacity-100 group-hover/carousel:opacity-40 hover:!opacity-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background focus:scale-[1.02] focus:!blur-none focus:!opacity-100`
+                    ? "opacity-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background"
+                    : `transition-all duration-500 hover:scale-[1.02] group-hover/carousel:blur-sm hover:!blur-none opacity-100 group-hover/carousel:opacity-40 hover:!opacity-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-background focus:scale-[1.02] focus:!blur-none focus:!opacity-100`
                     }`}
                   onFocus={() => handleCardFocus(cardId)}
                   onBlur={handleCardBlur}
@@ -155,15 +155,15 @@ export function InfiniteCarousel() {
                 >
                   <Image src={item.image || "/placeholder.svg"} alt={`${item.name} technology card`} fill className="object-cover" />
                   <div className={`absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent ${prefersReducedMotion
-                      ? "translate-y-0" // Always visible when motion is reduced
-                      : `translate-y-full group-hover/card:translate-y-0 transition-transform duration-500 ease-out ${isCardFocused ? 'translate-y-0' : ''}`
+                    ? "translate-y-0" // Always visible when motion is reduced
+                    : `translate-y-full group-hover/card:translate-y-0 transition-transform duration-500 ease-out ${isCardFocused ? 'translate-y-0' : ''}`
                     }`}>
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-white/60 mb-1">{item.category}</div>
-                    <p className="text-2xl text-white font-sans font-medium leading-tight">{item.name}</p>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-[#fefefe]/60 mb-1">{item.category}</div>
+                    <p className="text-2xl text-[#fefefe] font-sans font-medium leading-tight">{item.name}</p>
                   </div>
                   <div className={`absolute top-4 left-4 flex gap-2 ${prefersReducedMotion
-                      ? "opacity-100" // Always visible when motion is reduced
-                      : `opacity-0 group-hover/card:opacity-100 transition-opacity ${isCardFocused ? 'opacity-100' : ''}`
+                    ? "opacity-100" // Always visible when motion is reduced
+                    : `opacity-0 group-hover/card:opacity-100 transition-opacity ${isCardFocused ? 'opacity-100' : ''}`
                     }`}>
                     <div className="w-10 h-10 border border-white/40 bg-black/40 backdrop-blur-sm rounded-md p-1">
                       <div className="w-full h-full bg-white/10 rounded-sm" />

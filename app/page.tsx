@@ -1,177 +1,709 @@
-"use client"
+"use client";
 
-import { ArrowRight, ChevronDown, Github, Globe } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
-import { Announcements } from "@/components/announcements"
-import { InfiniteCarousel } from "@/components/infinite-carousel"
-import { ParallaxServices } from "@/components/parallax-services"
-import { Footer } from "@/components/footer"
-import { FeaturedModels } from "@/components/featured-models"
-import { EnterpriseCTA } from "@/components/enterprise-cta"
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import CardsParallax from "../components/cards-parallax";
+import { MoveUpRight } from "lucide-react";
+import SearchBar from "../components/search-bar";
+import ShowcaseCarousel from "../components/showcase-carousel";
 
-export default function PortfolioLanding() {
-  // --- STATE ---
-  const [navbarVisible, setNavbarVisible] = useState(true)
-
-  // --- REFS ---
-  const containerRef = useRef<HTMLDivElement>(null)
-  const lastScrollTop = useRef(0)
-
-  // Scroll Restoration Logic
-  useEffect(() => {
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual'
-    }
-  }, [])
-
-  // --- 1. SCROLL LISTENER (Navbar Visibility) ---
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    const handleScroll = () => {
-      const currentScroll = container.scrollTop
-
-      // Auto-hide navbar on scroll down, show on scroll up
-      if (currentScroll > lastScrollTop.current + 5) {
-        setNavbarVisible(false)
-      } else if (currentScroll < lastScrollTop.current - 5) {
-        setNavbarVisible(true)
-      }
-      lastScrollTop.current = currentScroll
-    }
-
-    container.addEventListener('scroll', handleScroll, { passive: true })
-    return () => container.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const scrollToServices = (e: React.MouseEvent) => {
-    e.preventDefault()
-    setTimeout(() => {
-      const element = document.getElementById("services")
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
-      }
-    }, 50)
-  }
+function WordByWordFade({ text, className }: { text: string; className: string }) {
+  const words = text.trim().split(/\s+/);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full h-screen font-sans bg-black text-white overscroll-none overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
-    >
+    <h2 className={className}>
+      {words.map((word, index) => (
+        <motion.span
+          key={`${word}-${index}`}
+          initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: false, amount: 0.8 }}
+          transition={{ duration: 0.75, delay: index * 0.16, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block mr-[0.28em] will-change-transform"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </h2>
+  );
+}
 
-      {/* --- NAVIGATION --- */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black/40 backdrop-blur-md border-b border-white/5 ${navbarVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+export default function OceanOfPDFHero() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showCustomCursor, setShowCustomCursor] = useState(false);
+  const [isOverHero1, setIsOverHero1] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const containerRef = useRef<HTMLDivElement>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="text-xl font-serif tracking-tight font-bold italic">SHREYAS</div>
+  // Track global mouse position with spring for premium feel
+  const springConfig = { stiffness: 1000, damping: 50, mass: 0.1 };
+  const cursorX = useSpring(0, springConfig);
+  const cursorY = useSpring(0, springConfig);
 
-          <div className="hidden md:flex items-center gap-8">
-            <a href="/" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Home</a>
-            <a href="/projects" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Projects</a>
-            <a href="/writing" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Writing</a>
-            <a href="/resume" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Resume</a>
-          </div>
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [cursorX, cursorY]);
 
-          <a href="mailto:shreyasthale54@gmail.com" className="px-6 py-2 text-sm font-medium transition-all rounded-sm bg-white text-black hover:bg-white/90 shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-            Contact
-          </a>
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 70,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const { scrollYProgress: sheetProgress } = useScroll({
+    target: sheetRef,
+    offset: ["start end", "end start"],
+  });
+
+  const sheetCircle = useTransform(sheetProgress, [0, 0.45, 0.8], [8, 55, 160]);
+  const sheetClip = useTransform(sheetCircle, (r) => `circle(${r}% at 50% 110%)`);
+  const sheetContentY = useTransform(sheetProgress, [0, 1], ["0px", "0px"]);
+  const sheetFullOpacity = useTransform(sheetProgress, [0.3, 0.55, 0.8], [0, 1, 1]);
+
+  const { scrollYProgress: footerProgress } = useScroll({
+    target: footerRef,
+    offset: ["start end", "end start"],
+  });
+  const footerTitleY = useTransform(footerProgress, [0, 1], ["40px", "-40px"]);
+  const footerInfoY = useTransform(footerProgress, [0, 1], ["20px", "-20px"]);
+  const footerSlideY = useTransform(footerProgress, [0, 0.35, 1], ["100vh", "0vh", "0vh"]);
+  const STATEMENTS = [
+    { line1: "attention isnt lost.", line2: "its stolen." },
+    { line1: "page by page.", line2: "thought by thought." },
+    { line1: "feeds werent built for learning.", line2: "they were built for addiction" },
+  ];
+
+  // Search bar motion keeps the same logo-to-navbar timing.
+  const searchY = useTransform(smoothProgress, [0, 0.075], ["20vh", "2.15rem"]);
+  const searchScale = useTransform(smoothProgress, [0, 0.075], [1.75, 1]);
+  const searchPointerEvents = useTransform(smoothProgress, [0, 0.075], ["none", "auto"]);
+
+  // --- SECTION 1 (Blue) ---
+  // Shrinks 4x and pulls up. 
+  // IMPORTANT: Moves up exactly 100% to match Video entering 100% to 0%, ensuring NO GAP.
+  const hero1Scale = useTransform(smoothProgress, [0, 0.15], [1, 0.25]);
+  const hero1Y = useTransform(smoothProgress, [0, 0.15], ["0%", "-100%"]);
+  const hero1Radius = useTransform(smoothProgress, [0, 0.075], ["0px", "0px"]);
+
+  // --- SECTION 2 (Video - 90% width) ---
+  // Slides up faster to "chase" Section 1
+  const hero2Y = useTransform(smoothProgress, [0, 0.15], ["100vh", "0vh"]);
+  // Scale: Enters [0.8 -> 1]. Holds. Then Shrinks [1 -> 0.5] starting at 0.25 until end (0.75).
+  const hero2Scale = useTransform(smoothProgress, [0.035, 0.15, 0.12, 0.75], [0.8, 1, 1, 0.5]);
+
+  // Text grows as video shrinks (Net effect: Visual growth on screen)
+  const hero2TextScale = useTransform(smoothProgress, [0.12, 0.75], [1, 3]);
+
+  // --- SECTION 4 (New Image Hero) ---
+  // Slides up over the shrinking video
+  const hero4Y = useTransform(smoothProgress, [0.64, 0.75], ["100vh", "0vh"]);
+
+  // --- SECTION 5 (Global Reach - New) ---
+  // Slides up over Section 4. [0.75, 0.85]
+  const hero5Y = useTransform(smoothProgress, [0.75, 0.85], ["100vh", "0vh"]);
+  const hero5Scale = useTransform(smoothProgress, [0.75, 0.85], [1.5, 1]);
+
+  // --- SECTION 6 (Third Hero Card) ---
+  // Slides up over Section 5. [0.85, 1.0]
+  const hero6Y = useTransform(smoothProgress, [0.85, 1.0], ["100vh", "0vh"]);
+  const hero6Scale = useTransform(smoothProgress, [0.85, 1.0], [1.2, 1]);
+
+  return (
+    <main className="bg-[#000000]">
+
+      {/* Global Custom Cursor */}
+      <motion.div
+        className="fixed pointer-events-none z-[150] mix-blend-difference"
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+        animate={{
+          scale: showCustomCursor ? 1 : 1, // Keep scale stable but change content
+          opacity: isOverHero1 ? 0 : 1, // Hide custom cursor when over first hero
+        }}
+      >
+        <AnimatePresence mode="wait">
+          {!showCustomCursor ? (
+            <motion.div
+              key="default-cursor"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              className="w-4 h-4 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+            />
+          ) : (
+            <motion.div
+              key="visit-cursor"
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              className="w-24 h-24 rounded-full bg-white flex flex-col items-center justify-center shadow-2xl"
+            >
+              <MoveUpRight className="w-6 h-6 text-black mb-0.5" strokeWidth={2.5} />
+              <span className="text-black font-bold text-[10px] uppercase tracking-widest leading-none">Visit</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+
+      {/* 1. FIXED SEARCH BAR - Layered on top of everything (z-120) */}
+      <motion.div
+        style={{
+          y: searchY,
+          scale: searchScale,
+          x: "-50%",
+          pointerEvents: searchPointerEvents,
+        }}
+        animate={{
+          zIndex: isMenuOpen ? 100 : 120, // Go behind menu when it's open
+        }}
+        transition={{ duration: 0.1 }}
+        className="fixed left-1/2 top-0 origin-top w-[min(86vw,30rem)]"
+      >
+        <SearchBar value={searchValue} onChange={setSearchValue} />
+      </motion.div>
+
+      {/* 2. FIXED NAVBAR (Socials/Menu - z-110) */}
+      <nav className="fixed top-0 left-0 w-full z-[110] flex justify-between items-center p-8 lg:p-10 pointer-events-none">
+        <div className="flex items-center gap-6 text-[#fefefe] text-[13px] tracking-[0.12em] pointer-events-auto">
+          {[
+            { label: "OceanOfPDF", className: "font-[family-name:var(--font-carattere)] text-2xl tracking-normal normal-case" },
+            { label: "Discover", className: "font-[family-name:var(--font-instrument-serif)] italic normal-case" },
+            { label: "Donate", className: "font-[family-name:var(--font-instrument-serif)] italic normal-case" },
+          ].map((link) => (
+            <span key={link.label} className={`cursor-pointer hover:opacity-60 transition-opacity ${link.className}`}>{link.label}</span>
+          ))}
         </div>
+
+        {/* Landing slot for centered animated search bar */}
+        <div className="w-[min(30rem,42vw)] hidden lg:block" />
+
+        {/* Hamburger Menu Button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="flex flex-col cursor-pointer group pointer-events-auto relative z-[111] w-12 h-8 justify-center items-center"
+          aria-label="Toggle menu"
+        >
+          <motion.div
+            animate={{
+              rotate: isMenuOpen ? 45 : 0,
+              y: isMenuOpen ? 0 : -5,
+            }}
+            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            className="w-12 h-[3px] bg-[#737373] transition-all origin-center absolute"
+          />
+          <motion.div
+            animate={{
+              rotate: isMenuOpen ? -45 : 0,
+              y: isMenuOpen ? 0 : 5,
+            }}
+            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            className="w-12 h-[3px] bg-[#737373] transition-all origin-center absolute"
+          />
+        </button>
       </nav>
 
-      {/* --- HOVER DETECTION ZONE --- */}
-      <div
-        className="fixed top-0 left-0 right-0 h-32 z-40 bg-transparent pointer-events-none"
-        onMouseEnter={() => setNavbarVisible(true)}
-      />
-
-      {/* Main Content Container */}
-      <div className="relative z-20 bg-black">
-
-        {/* Hero Section */}
-        <section className="relative h-[100dvh] w-full overflow-hidden">
-
-          <div className="absolute inset-0 opacity-30 pointer-events-none"
-            style={{
-              backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-              backgroundSize: '50px 50px'
+      {/* Fullscreen Menu Overlay */}
+      <AnimatePresence mode="wait">
+        {isMenuOpen && (
+          <motion.div
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{
+              duration: 0.6,
+              ease: [0.23, 1, 0.32, 1],
+              delay: isMenuOpen ? 0 : 0.3, // Delay exit so text can disappear first
             }}
-          />
+            className="fixed inset-0 z-[105] overflow-hidden"
+            style={{
+              backdropFilter: 'blur(40px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+              backgroundColor: 'rgba(254,254,254,0.4)'
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-cyan-500/5" />
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full md:w-[98%] h-[85vh] max-w-7xl opacity-40 rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl pointer-events-none">
-            <img
-              src="/futuristic-black-machine-learning-architecture.png"
-              alt="Autonomous ML Systems Architecture"
-              className="w-full h-full object-cover scale-105"
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.3,
+                delay: isMenuOpen ? 0.3 : 0, // Appear after menu slides down, disappear immediately on close
+              }}
+              className="relative h-full w-full flex items-center justify-end px-8 lg:px-16 overflow-hidden"
+            >
+              <nav className="flex flex-col items-end gap-4 lg:gap-6 max-w-full">
+                {[
+                  { href: "/", label: "Home" },
+                  { href: "/about", label: "About" },
+                  { href: "/work", label: "Work" },
+                  { href: "/membership", label: "Membership" },
+                  { href: "/journal", label: "Journal" },
+                  { href: "/contact", label: "Contact" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 50 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: isMenuOpen ? 0.4 + index * 0.05 : 0, // Stagger in, exit immediately
+                      ease: [0.23, 1, 0.32, 1]
+                    }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-zinc-900/90 hover:text-zinc-900 transition-all duration-300 tracking-tight leading-none block whitespace-nowrap"
+                      style={{
+                        textShadow: '0 0 40px rgba(255,95,31,0.2)',
+                      }}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+            </motion.div>
+
+            {/* Close area - click outside to close */}
+            <div
+              className="absolute inset-0 -z-10"
+              onClick={() => setIsMenuOpen(false)}
             />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black/50 to-transparent" />
-          </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          <div className="relative z-10 w-full h-full flex flex-col px-6 pt-24 pb-6">
+      {/* 3. SCROLLABLE CONTAINER (h-1200vh to give space for animation) */}
+      <div ref={containerRef} className="relative h-[1200vh]">
+        {/* SECTION 1: HERO */}
+        <div
+          className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden z-10"
+          onMouseEnter={() => setIsOverHero1(true)}
+          onMouseLeave={() => setIsOverHero1(false)}
+        >
+          <motion.section
+            style={{
+              y: hero1Y,
+              scale: hero1Scale,
+              borderRadius: hero1Radius,
+              backgroundImage: "url('/books/marble.png')",
+            }}
+            className="relative h-screen w-full bg-[#4ce1f5] bg-cover bg-center flex flex-col p-10 lg:p-16 origin-center overflow-hidden shadow-2xl"
+          >
+            <div
+              className="absolute inset-0 z-0 pointer-events-none"
+              style={{ background: "rgba(46, 204, 113, 0.12)" }}
+            />
 
-            <div className="flex-1" />
+            {/* Headlines */}
+            <div className="flex-1 flex flex-col justify-center relative z-40">
+              <div className="grid grid-cols-12 w-full items-center -mt-28">
+                <div className="col-span-12 lg:col-span-7">
+                  <h1 className="
+            text-transparent bg-clip-text 
+            bg-gradient-to-br from-[#ffffff] via-[#d9d9d9] to-[#a8a8a8]
+            drop-shadow-[0_1px_6px_rgba(255,255,255,0.15)]
+            text-4xl lg:text-6xl font-medium leading-[1] tracking-tight max-w-2xl
+          ">
+                    One doorway.<br />
+                    A universe of books.
+                  </h1>
 
-            <div className="shrink-0 flex flex-col items-center text-center space-y-6 md:space-y-8">
+                  <div className="mt-10 flex items-center gap-5">
+                    <div className="w-6 h-6 rounded-full border-[5px] border-[#737373] flex-shrink-0" />
+                    <p className="
+              text-transparent bg-clip-text 
+              bg-gradient-to-br from-[#ffffff] via-[#d9d9d9] to-[#a8a8a8]
+              text-lg font-medium max-w-[280px] leading-tight
+            ">
+                      Access without boundaries.
+                    </p>
+                  </div>
+                </div>
 
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-black/40 backdrop-blur-md text-[10px] uppercase tracking-widest text-gray-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                ML Intern @ IIT Bombay · Software Engineer Intern @ InfinityPool
+                <div className="hidden lg:block lg:col-span-5 text-right">
+                  <p className="
+            text-transparent bg-clip-text 
+            bg-gradient-to-br from-[#ffffff] via-[#d9d9d9] to-[#a8a8a8]
+            font-serif italic text-4xl lg:text-5xl leading-[0.85]
+          ">
+                    The Creative <br /> Agency—
+                  </p>
+                </div>
               </div>
-
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-[0.9] text-balance tracking-tight drop-shadow-2xl">
-                Designing autonomous machine learning systems.
-              </h1>
-
-              <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-lg">
-                Research-driven AI, distributed systems, and full-stack engineering. <br />
-                Bridging theory, infrastructure, and real-world deployment.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                <a href="#services" onClick={scrollToServices} className="w-full sm:w-auto bg-white text-black px-8 py-3 font-medium flex items-center justify-center gap-2 hover:bg-white/90 transition-opacity cursor-pointer rounded-sm shadow-lg shadow-white/10">
-                  My Work <ArrowRight className="w-4 h-4" />
-                </a>
-                <a href="/resume" className="w-full sm:w-auto border border-white/20 bg-black/40 backdrop-blur-sm px-8 py-3 font-medium hover:bg-white/10 transition-colors rounded-sm text-center">
-                  Resume
-                </a>
-              </div>
-
             </div>
 
-            <div className="flex-1" />
-
-            <div className="shrink-0 flex flex-col items-center justify-end">
-              <div className="flex items-center justify-center gap-8 opacity-60 grayscale filter hover:grayscale-0 transition-all mb-6">
-                <a href="https://github.com/ShreyasT123" className="flex items-center gap-2 text-xs uppercase tracking-widest hover:text-white drop-shadow-md">
-                  <Github className="w-4 h-4" /> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/shreyas-thale/" className="flex items-center gap-2 text-xs uppercase tracking-widest hover:text-white drop-shadow-md">
-                  <Globe className="w-4 h-4" /> LinkedIn
-                </a>
-              </div>
-
-              <div className="animate-bounce">
-                <ChevronDown className="w-6 h-6 text-white drop-shadow-md" />
-              </div>
+            {/* Model Image - Z-index 10 (Logo is z-120 so it stays on top) */}
+            <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+              {/* <img
+                src="/model-image.png"
+                className="h-[95%] w-auto object-contain mix-blend-overlay opacity-90 brightness-110"
+                alt="Model Hero"
+              /> */}
             </div>
 
-          </div>
-        </section>
-
-        <Announcements />
-        <InfiniteCarousel />
-
-        {/* PASS THE CONTAINER REF TO PARALLAX */}
-        <div id="services">
-          <ParallaxServices scrollContainerRef={containerRef} />
+            {/* Center portrait overlay (rotated left 90deg) */}
+            <div className="absolute inset-0 z-20 flex items-center justify-start pointer-events-none">
+              <img
+                src="/image.png"
+                alt="Center Portrait"
+                className="h-[55%] w-auto object-contain -ml-[10vw]"
+                style={{ transform: "rotate(-90deg)" }}
+              />
+            </div>
+          </motion.section>
         </div>
 
-        <FeaturedModels />
-        {/* Removed EnterpriseCTA as it is likely corporate */}
-        <Footer />
-      </div>
-    </div>
-  )
+        {/* SECTION 2: VIDEO HERO & SECTION 4 (Stacked) */}
+        <div className="sticky top-0 h-screen w-full flex items-center justify-center z-20 pointer-events-none">
+
+          {/* VIDEO HERO (Layer Z-20) */}
+          <motion.div
+            style={{ y: hero2Y, scale: hero2Scale }}
+            className="relative h-screen w-full bg-[#fefefe] rounded-none overflow-hidden shadow-[0_-50px_150px_rgba(0,0,0,0.08)] pointer-events-auto"
+          >
+            <div className="absolute inset-0" style={{ backgroundColor: 'transparent' }}>
+              <img
+                src="/download (3).jpg"
+                alt="People reading books"
+                className="w-full h-full object-cover opacity-100"
+              />
+            </div>
+
+            <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-10">
+
+              <motion.h2
+                style={{ scale: hero2TextScale }}
+                className="text-[#fefefe] text-5xl lg:text-8xl font-bold tracking-tight max-w-5xl leading-[0.9] origin-center"
+              >
+                Reading that  <br /> shapes today <br /> & sharpens  <br /> tommorow.
+              </motion.h2>
+
+            </div>
+          </motion.div>
+
+          {/* 4th IMAGE HERO (Layer Z-25, slides over video, under cards) */}
+          <motion.div
+            style={{ y: hero4Y }}
+            className="absolute h-screen w-full bg-[#fefefe] rounded-none overflow-hidden shadow-2xl z-25 flex items-center justify-center cursor-none pointer-events-auto"
+          >
+            <div className="relative z-20 px-8 text-center text-zinc-900">
+              <h3 className="text-xs md:text-sm font-extralight tracking-[0.35em] uppercase text-zinc-900/80">
+                {STATEMENTS[0].line1}
+              </h3>
+              <div className="mx-auto my-4 h-px w-20 bg-zinc-900/20" />
+              <WordByWordFade
+                text={STATEMENTS[0].line2}
+                className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.85] text-zinc-900"
+              />
+            </div>
+          </motion.div>
+
+          {/* 5th IMAGE HERO (Layer Z-26, slides over 4th Hero) */}
+          <motion.div
+            style={{ y: hero5Y }}
+            className="absolute h-screen w-full bg-[#fefefe] rounded-none overflow-hidden shadow-2xl z-26 flex items-center justify-center cursor-none pointer-events-auto"
+          >
+            <motion.div style={{ scale: hero5Scale }} className="relative z-20 px-8 text-center text-zinc-900">
+              <h3 className="text-xs md:text-sm font-extralight tracking-[0.35em] uppercase text-zinc-900/80">
+                {STATEMENTS[1].line1}
+              </h3>
+              <div className="mx-auto my-4 h-px w-20 bg-zinc-900/20" />
+              <WordByWordFade
+                text={STATEMENTS[1].line2}
+                className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.85] text-zinc-900"
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* 6th IMAGE HERO (Layer Z-27, slides over 5th Hero) */}
+          <motion.div
+            style={{ y: hero6Y }}
+            className="absolute h-screen w-full bg-[#fefefe] rounded-none overflow-hidden shadow-2xl z-27 flex items-center justify-center cursor-none pointer-events-auto"
+          >
+            <motion.div style={{ scale: hero6Scale }} className="relative z-20 px-8 text-center text-zinc-900">
+              <h3 className="text-xs md:text-sm font-extralight tracking-[0.35em] uppercase text-zinc-900/80">
+                {STATEMENTS[2].line1}
+              </h3>
+              <div className="mx-auto my-4 h-px w-20 bg-zinc-900/20" />
+              <WordByWordFade
+                text={STATEMENTS[2].line2}
+                className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.9] max-w-4xl text-zinc-900"
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* CARDS PARALLAX OVERLAY (Layer Z-30) */}
+          <CardsParallax
+            scrollProgress={smoothProgress}
+            inputRange={[0.12, 0.72]}
+            onHoverChange={setShowCustomCursor}
+          />
+        </div>
+
+      </div >
+
+      {/* ACHIEVEMENTS SECTION (After Innovation) */}
+      < section className="relative min-h-screen w-full bg-[#fefefe] flex items-center" >
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+          className="w-full px-8 lg:px-16"
+        >
+          <div className="flex items-center gap-6 text-zinc-900/70 uppercase tracking-[0.2em] text-xs">
+            <span className="w-2 h-2 rounded-full bg-[#737373]" />
+            <span className="text-zinc-900">Our Impact</span>
+            <span className="h-px w-12 bg-zinc-900/20" />
+            <span className="text-zinc-900/50">What We’ve Built</span>
+          </div>
+
+          <div className="mt-10 border-t border-zinc-900/10" />
+
+          <h2 className="mt-12 text-zinc-900 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.02] max-w-5xl">
+            Every number reflects a reader, a moment, a spark of change.
+          </h2>
+          <p className="mt-6 text-zinc-900/60 text-lg md:text-xl">
+            Shaping minds, page by purposeful page
+          </p>
+        </motion.div>
+      </section >
+
+      {/* CASE STUDY SECTION (After Achievements) */}
+      < section className="relative min-h-screen w-full bg-[#000000] flex items-center" >
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+          className="w-full px-8 lg:px-16"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-7">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-zinc-900/10 bg-[#fefefe]">
+                <img
+                  src="/download.jpg"
+                  alt="Boreal VR Campaign"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-white/40" />
+                <div
+                  className="absolute top-5 left-5 z-20 pointer-events-auto px-3 py-1.5 rounded-md text-[11px] font-semibold uppercase tracking-widest text-zinc-900 hover:text-[#737373] transition-colors duration-300 bg-white/10 border border-white/20 backdrop-blur-md"
+                  style={{ transform: "skewX(-2deg) rotate(-1.5deg)" }}
+                >
+                  visit
+                </div>
+                <div className="absolute inset-0 z-10 flex items-center justify-center">
+                  <div className="px-10 py-4 rounded-full bg-white/20 text-zinc-900 text-4xl font-semibold backdrop-blur-md">
+                    watch reel
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
+                <div className="max-w-md">
+                  <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[#fefefe]">
+                    <span className="w-2 h-2 rounded-full bg-[#737373]" />
+                    <span>Featured Collaboration 2026</span>
+                  </div>
+                  <h3 className="mt-4 text-[#fefefe] text-4xl md:text-5xl font-semibold leading-tight">
+                    Atlas Knowledge<br /> Reading Experience Initiative
+                  </h3>
+                  <p className="mt-4 text-[#fefefe] text-base leading-relaxed">
+                    OceanOfPDF proudly presents a landmark collaboration that reshaped digital reading and elevated engagement across thousands of readers worldwide.
+                  </p>
+                  <button className="mt-6 text-[#fefefe] hover:text-[#737373] transition-colors text-sm font-semibold">
+                    view case study
+                  </button>
+                </div>
+
+                <div className="mt-10 lg:mt-0 border-l border-zinc-900/10 pl-6 space-y-8">
+                  <div>
+                    <p className="text-[#fefefe] text-xs uppercase tracking-[0.2em]">Users Engagement</p>
+                    <p className="text-[#fefefe] text-4xl font-semibold mt-2">35%</p>
+                  </div>
+                  <div>
+                    <p className="text-[#fefefe] text-xs uppercase tracking-[0.2em]">Growth in Active Users</p>
+                    <p className="text-[#fefefe] text-4xl font-semibold mt-2">24%</p>
+                  </div>``
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section >
+
+      {/* SHEET REVEAL SECTION */}
+      < section ref={sheetRef} className="relative h-[360vh] w-full bg-black" >
+        <div className="sticky top-0 h-screen w-screen overflow-hidden">
+          <motion.div
+            style={{ clipPath: sheetClip }}
+            className="absolute inset-0 bg-white text-black"
+          >
+            {/* Full-sheet content */}
+            <motion.div
+              style={{ opacity: sheetFullOpacity, y: sheetContentY }}
+              className="h-full w-full px-8 py-16 md:px-16 lg:px-20"
+            >
+              <div className="max-w-6xl w-full">
+                <h3 className="text-[20vw] md:text-[14vw] leading-[0.9] font-black tracking-tight text-black">
+                  What we do
+                </h3>
+                <p className="mt-6 text-[8vw] md:text-[5vw] lg:text-[3.8vw] text-zinc-500 leading-tight max-w-5xl">
+                  Bringing stories, ideas, and knowledge together — without distraction.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section >
+
+      <ShowcaseCarousel onHoverChange={setShowCustomCursor} />
+
+      {/* CTA HERO SECTION */}
+      <section className="relative h-[200vh] w-full bg-black z-10">
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }} />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8))' }} />
+          </div>
+
+          <div className="relative z-10 h-full flex items-center justify-center px-8 lg:px-16">
+            <div className="text-center max-w-5xl">
+              <motion.div
+                initial={{ scale: 1 }}
+                whileInView={{ scale: 1.2 }}
+                viewport={{ once: false, amount: 0.6 }}
+                transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+              >
+                <h3 className="mt-4 text-[#fefefe] text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05]">
+                  Discover millions of <br />books, research, <br />and ideas
+                </h3>
+              </motion.div>
+
+              <p className="mt-8 text-[#fefefe]/80 text-lg md:text-xl">
+                Explore, read, and share knowledge —
+                <br />
+                all in one place.
+              </p>
+
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-8 text-[#fefefe] text-lg">
+                <button className="relative font-semibold">
+                  start exploring
+                  <span className="absolute left-0 -bottom-2 h-0.5 w-8 bg-[#737373]" />
+                </button>
+                <button className="relative font-semibold">
+                  upload & share
+                  <span className="absolute left-0 -bottom-2 h-0.5 w-8 bg-[#737373]" />
+                </button>
+              </div>
+
+              <p className="mt-12 text-[#fefefe]/70 text-sm">
+                Trusted by students, researchers, and educators worldwide
+              </p>
+              <div className="mt-6 flex items-center justify-center gap-10 text-[#fefefe]/70 text-lg">
+                <span>Students</span>
+                <span>Researchers</span>
+                <span>Educators</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER PARALLAX SECTION */}
+      <section ref={footerRef} className="relative h-[200vh] w-full -mt-[100vh] z-30 bg-white">
+        <div className="sticky top-0 h-screen w-full overflow-hidden pointer-events-auto bg-white">
+          <motion.div
+            style={{ y: footerSlideY }}
+            className="absolute inset-0 bg-white text-black"
+          >
+            <div className="h-full w-full px-8 lg:px-16 pt-24">
+              <div className="flex items-start justify-between gap-8">
+                <motion.h2
+                  style={{ y: footerTitleY }}
+                  className="text-[18vw] md:text-[12vw] font-black tracking-tight text-black leading-[0.9]"
+                >
+                  OceanOfPDF
+                </motion.h2>
+                <motion.div style={{ y: footerInfoY }} className="max-w-sm text-right">
+                  <p className="text-lg text-zinc-500">
+                    We are currently based in Milano and work remotely.
+                  </p>
+                  <div className="mt-6">
+                    <div className="text-4xl font-semibold">11:34:41</div>
+                    <div className="mt-1 text-sm text-zinc-500">Timezone (GMT+1)</div>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div className="mt-16 border-t border-black/10 pt-10 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div className="lg:col-span-3 space-y-3 text-lg">
+                  {["Home", "Work", "About", "Membership", "Journal"].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <span className="w-2 h-0.5 bg-[#737373]" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="lg:col-span-3 space-y-3 text-lg">
+                  {["Privacy Policy", "Terms of Service", "Disclaimer", "404", "More Templates"].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <span className="w-2 h-0.5 bg-[#737373]" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="lg:col-span-3 border-l border-black/10 pl-6">
+                  <h4 className="text-3xl font-semibold">Stay in the Loop</h4>
+                  <p className="mt-3 text-sm text-zinc-500">
+                    Stay informed about our latest news, updates by subscribing to our newsletter.
+                  </p>
+                  <p className="mt-3 text-xs text-zinc-500">
+                    We respect your inbox. No spam, just valuable updates.
+                  </p>
+                </div>
+                <div className="lg:col-span-3 border-l border-black/10 pl-6 space-y-5 text-lg">
+                  {["Whatsapp", "X", "Linkedin", "Instagram"].map((item) => (
+                    <div key={item} className="flex items-center justify-between">
+                      <span>{item}</span>
+                      <span className="text-[#737373]">›</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+
+
+    </main >
+  );
 }

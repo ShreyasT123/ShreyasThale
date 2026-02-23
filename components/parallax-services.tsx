@@ -74,7 +74,7 @@ export function ParallaxServices({ scrollContainerRef }: ParallaxServicesProps) 
             className="space-y-8"
           >
             <div>
-              <h2 className="text-5xl md:text-8xl font-sans leading-[0.9] tracking-tight text-white block">
+              <h2 className="text-5xl md:text-8xl font-sans leading-[0.9] tracking-tight text-[#fefefe] block">
                 Capabilities.
               </h2>
               <h2 className="text-5xl md:text-8xl font-sans leading-[0.9] tracking-tight text-muted-foreground block">
@@ -180,7 +180,7 @@ function Card({
              rounded-[1.2rem] md:rounded-[1.5rem]
              p-4 md:p-8
              flex flex-col justify-between
-             text-white
+             text-[#fefefe]
              shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
         >
           <div className="flex flex-col justify-between h-full overflow-hidden">
@@ -191,13 +191,13 @@ function Card({
           <div className="flex flex-col gap-4 md:gap-6 items-start md:items-end justify-between md:flex-row mt-4">
             <div className="flex flex-col gap-1 md:gap-2">
               {service.tags.map((tag: string) => (
-                <span key={tag} className="text-[8px] md:text-[9px] font-bold tracking-[0.1em] text-white/40 uppercase">
+                <span key={tag} className="text-[8px] md:text-[9px] font-bold tracking-[0.1em] text-[#fefefe]/40 uppercase">
                   {tag}
                 </span>
               ))}
             </div>
             <div className="flex-1 max-w-full md:max-w-[280px]">
-              <p className="text-xs md:text-sm lg:text-base leading-snug font-medium text-white/80 mb-4 md:mb-6">
+              <p className="text-xs md:text-sm lg:text-base leading-snug font-medium text-[#fefefe]/80 mb-4 md:mb-6">
                 {service.description}
               </p>
               <div className="flex justify-start md:justify-end">

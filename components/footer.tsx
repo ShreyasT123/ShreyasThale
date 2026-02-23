@@ -3,7 +3,7 @@ import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react"
 
 export function Footer() {
     return (
-        <footer className="relative min-h-[280px] w-full bg-black text-white overflow-hidden border-t border-white/10">
+        <footer className="relative min-h-[280px] w-full bg-black text-[#fefefe] overflow-hidden border-t border-white/10">
             {/* Background Image with Overlay */}
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-luminosity"
@@ -29,7 +29,7 @@ export function Footer() {
                                 <li key={item.label}>
                                     <Link
                                         href={item.href}
-                                        className="text-[10px] font-mono tracking-widest uppercase text-white/50 hover:text-white transition-colors"
+                                        className="text-[10px] font-mono tracking-widest uppercase text-[#fefefe]/50 hover:text-[#fefefe] transition-colors"
                                     >
                                         {item.label}
                                     </Link>
@@ -50,7 +50,7 @@ export function Footer() {
                                 <li key={item.label}>
                                     <Link
                                         href={item.href}
-                                        className="text-[10px] font-mono tracking-widest uppercase text-white/50 hover:text-white transition-colors"
+                                        className="text-[10px] font-mono tracking-widest uppercase text-[#fefefe]/50 hover:text-[#fefefe] transition-colors"
                                     >
                                         {item.label}
                                     </Link>
@@ -71,7 +71,7 @@ export function Footer() {
                                 <li key={item.label}>
                                     <Link
                                         href={item.href}
-                                        className="group flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-white/50 hover:text-white transition-colors"
+                                        className="group flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-[#fefefe]/50 hover:text-[#fefefe] transition-colors"
                                     >
                                         {item.icon}
                                         {item.label}
@@ -88,7 +88,7 @@ export function Footer() {
                             <div className="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center">
                                 <span className="font-serif italic">ST</span>
                             </div>
-                            <p className="text-[10px] font-mono tracking-widest uppercase text-white/40 leading-relaxed">
+                            <p className="text-[10px] font-mono tracking-widest uppercase text-[#fefefe]/40 leading-relaxed">
                                 Designing autonomous machine learning systems.
                             </p>
                         </div>
@@ -98,7 +98,7 @@ export function Footer() {
                 {/* Bottom Section */}
                 <div className="grid grid-cols-1 md:grid-cols-2">
                     <div className="p-10 lg:p-16 flex flex-col justify-between border-r border-white/10 min-h-[200px]">
-                        <div className="text-[10px] font-mono tracking-[0.3em] uppercase text-white/20">
+                        <div className="text-[10px] font-mono tracking-[0.3em] uppercase text-[#fefefe]/20">
                             Mumbai, India
                         </div>
                         <div className="space-y-4">
@@ -109,12 +109,12 @@ export function Footer() {
                     </div>
 
                     <div className="p-6 md:p-10 space-y-8 flex flex-col justify-end">
-                        <div className="pt-8 text-[10px] font-mono tracking-widest uppercase text-white/20 flex justify-between items-end">
+                        <div className="pt-8 text-[10px] font-mono tracking-widest uppercase text-[#fefefe]/20 flex justify-between items-end">
                             <div>
                                 © {new Date().getFullYear()} Shreyas Thale. <br />
                                 All rights reserved.
                             </div>
-                            <div className="text-white/10">
+                            <div className="text-[#fefefe]/10">
                                 B.Tech CSE @ FCRIT
                             </div>
                         </div>
