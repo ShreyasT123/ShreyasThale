@@ -15,7 +15,7 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
       <div className="relative overflow-hidden rounded-full border-none">
         <input
           type="text"
-          placeholder="Search OceanPDF"
+          placeholder="Search OceanOfPDF"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className="w-full border-none rounded-full bg-foreground/5 dark:bg-white/10 px-6 py-3 pl-12 text-sm text-black/80 dark:text-[#fefefe] placeholder:text-black/45 dark:placeholder:text-[#fefefe]/30 backdrop-blur-[32px] transition-all focus:outline-none focus:ring-0 relative z-10"

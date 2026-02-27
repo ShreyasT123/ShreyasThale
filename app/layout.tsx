@@ -41,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} ${carattere.variable} ${instrumentSerif.variable} antialiased bg-[#000000]`}>
+      <body className={`${inter.variable} ${playfair.variable} ${carattere.variable} ${instrumentSerif.variable} antialiased bg-[#fefefe]`}>
         {children}
       </body>
     </html>

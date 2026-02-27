@@ -122,7 +122,7 @@ export default function OceanOfPDFHero() {
   const hero6Scale = useTransform(smoothProgress, [0.85, 1.0], [1.2, 1]);
 
   return (
-    <main className="bg-[#000000]">
+    <main className="bg-[#0C0A00]">
 
       {/* Global Custom Cursor */}
       <motion.div
@@ -182,7 +182,7 @@ export default function OceanOfPDFHero() {
 
       {/* 2. FIXED NAVBAR (Socials/Menu - z-110) */}
       <nav className="fixed top-0 left-0 w-full z-[110] flex justify-between items-center p-8 lg:p-10 pointer-events-none">
-        <div className="flex items-center gap-6 text-[#fefefe] text-[13px] tracking-[0.12em] pointer-events-auto">
+        <div className="flex items-center gap-6 text-[#737373] text-[13px] tracking-[0.12em] pointer-events-auto">
           {[
             { label: "OceanOfPDF", className: "font-[family-name:var(--font-carattere)] text-2xl tracking-normal normal-case" },
             { label: "Discover", className: "font-[family-name:var(--font-instrument-serif)] italic normal-case" },
@@ -323,7 +323,7 @@ export default function OceanOfPDFHero() {
                 <div className="col-span-12 lg:col-span-7">
                   <h1 className="
             text-transparent bg-clip-text 
-            bg-gradient-to-br from-[#ffffff] via-[#d9d9d9] to-[#a8a8a8]
+            bg-gradient-to-br from-[#737373] via-[#d9d9d9] to-[#a8a8a8]
             drop-shadow-[0_1px_6px_rgba(255,255,255,0.15)]
             text-4xl lg:text-6xl font-medium leading-[1] tracking-tight max-w-2xl
           ">
@@ -335,7 +335,7 @@ export default function OceanOfPDFHero() {
                     <div className="w-6 h-6 rounded-full border-[5px] border-[#737373] flex-shrink-0" />
                     <p className="
               text-transparent bg-clip-text 
-              bg-gradient-to-br from-[#ffffff] via-[#d9d9d9] to-[#a8a8a8]
+              bg-gradient-to-br from-[#737373] via-[#d9d9d9] to-[#a8a8a8]
               text-lg font-medium max-w-[280px] leading-tight
             ">
                       Access without boundaries.
@@ -346,7 +346,7 @@ export default function OceanOfPDFHero() {
                 <div className="hidden lg:block lg:col-span-5 text-right">
                   <p className="
             text-transparent bg-clip-text 
-            bg-gradient-to-br from-[#ffffff] via-[#d9d9d9] to-[#a8a8a8]
+            bg-gradient-to-br from-[#737373] via-[#d9d9d9] to-[#a8a8a8]
             font-serif italic text-4xl lg:text-5xl leading-[0.85]
           ">
                     The Creative <br /> Agency—
@@ -492,71 +492,6 @@ export default function OceanOfPDFHero() {
         </motion.div>
       </section >
 
-      {/* CASE STUDY SECTION (After Achievements) */}
-      < section className="relative min-h-screen w-full bg-[#000000] flex items-center" >
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-          className="w-full px-8 lg:px-16"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-7">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-zinc-900/10 bg-[#fefefe]">
-                <img
-                  src="/download.jpg"
-                  alt="Boreal VR Campaign"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-white/40" />
-                <div
-                  className="absolute top-5 left-5 z-20 pointer-events-auto px-3 py-1.5 rounded-md text-[11px] font-semibold uppercase tracking-widest text-zinc-900 hover:text-[#737373] transition-colors duration-300 bg-white/10 border border-white/20 backdrop-blur-md"
-                  style={{ transform: "skewX(-2deg) rotate(-1.5deg)" }}
-                >
-                  visit
-                </div>
-                <div className="absolute inset-0 z-10 flex items-center justify-center">
-                  <div className="px-10 py-4 rounded-full bg-white/20 text-zinc-900 text-4xl font-semibold backdrop-blur-md">
-                    watch reel
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
-                <div className="max-w-md">
-                  <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-[#fefefe]">
-                    <span className="w-2 h-2 rounded-full bg-[#737373]" />
-                    <span>Featured Collaboration 2026</span>
-                  </div>
-                  <h3 className="mt-4 text-[#fefefe] text-4xl md:text-5xl font-semibold leading-tight">
-                    Atlas Knowledge<br /> Reading Experience Initiative
-                  </h3>
-                  <p className="mt-4 text-[#fefefe] text-base leading-relaxed">
-                    OceanOfPDF proudly presents a landmark collaboration that reshaped digital reading and elevated engagement across thousands of readers worldwide.
-                  </p>
-                  <button className="mt-6 text-[#fefefe] hover:text-[#737373] transition-colors text-sm font-semibold">
-                    view case study
-                  </button>
-                </div>
-
-                <div className="mt-10 lg:mt-0 border-l border-zinc-900/10 pl-6 space-y-8">
-                  <div>
-                    <p className="text-[#fefefe] text-xs uppercase tracking-[0.2em]">Users Engagement</p>
-                    <p className="text-[#fefefe] text-4xl font-semibold mt-2">35%</p>
-                  </div>
-                  <div>
-                    <p className="text-[#fefefe] text-xs uppercase tracking-[0.2em]">Growth in Active Users</p>
-                    <p className="text-[#fefefe] text-4xl font-semibold mt-2">24%</p>
-                  </div>``
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section >
 
       {/* SHEET REVEAL SECTION */}
       < section ref={sheetRef} className="relative h-[360vh] w-full bg-black" >
@@ -653,12 +588,12 @@ export default function OceanOfPDFHero() {
                 </motion.h2>
                 <motion.div style={{ y: footerInfoY }} className="max-w-sm text-right">
                   <p className="text-lg text-zinc-500">
-                    We are currently based in Milano and work remotely.
+                    We are currently based nowwhere and work secretly.
                   </p>
-                  <div className="mt-6">
-                    <div className="text-4xl font-semibold">11:34:41</div>
-                    <div className="mt-1 text-sm text-zinc-500">Timezone (GMT+1)</div>
-                  </div>
+                  {/* <div className="mt-6"> */}
+                  {/* <div className="text-4xl font-semibold">11:34:41</div> */}
+                  {/* <div className="mt-1 text-sm text-zinc-500">Timezone (GMT+1)</div> */}
+                  {/* </div> */}
                 </motion.div>
               </div>
 
