@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --font-carattere: 'Carattere', cursive;
+}
+
+.hide-default-cursor * {
+  cursor: none !important;
+}
+
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.rolling-title-wrap {
+  width: 100%;
+  color: #fff;
+}
+
+.rolling-title-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.02em;
+  overflow: hidden;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  font-size: clamp(2.7rem, 8vw, 9rem);
+  font-weight: 500;
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.rolling-title-line + .rolling-title-line {
+  margin-top: 0.08em;
+}
+
+.slot-reel-window {
+  position: relative;
+  display: inline-block;
+  height: 0.9em;
+  overflow: hidden;
+  transform: rotateX(7deg);
+  transform-origin: center center;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+}
+
+.slot-reel-track {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+}
+
+.slot-reel-char {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+.slot-reel-space {
+  display: inline-block;
+  width: 0.42em;
+}
